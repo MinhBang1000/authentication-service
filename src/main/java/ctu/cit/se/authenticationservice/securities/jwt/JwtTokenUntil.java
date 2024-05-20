@@ -62,19 +62,19 @@ public class JwtTokenUntil {
         }
     }
 
-    public String getUsernameFromToken(Claims claims) {
-        return claims.getSubject();
+    public String getUsernameFromToken(String token) {
+        return parseJwtClaims(token).getSubject();
     }
 
-    public String getIssuerFromToken(Claims claims) {
-        return claims.getIssuer();
+    public String getIssuerFromToken(String token) {
+        return parseJwtClaims(token).getIssuer();
     }
 
-    public  Date getIssuedAtFromToken(Claims claims) {
-        return claims.getIssuedAt();
+    public  Date getIssuedAtFromToken(String token) {
+        return parseJwtClaims(token).getIssuedAt();
     }
 
-    public Date getExpirationFromToken(Claims claims) {
-        return claims.getExpiration();
+    public Date getExpirationFromToken(String token) {
+        return parseJwtClaims(token).getExpiration();
     }
 }

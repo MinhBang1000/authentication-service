@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Objects;
+
 @RestController
 @RequestMapping("/authenticate")
 public class AuthenticationController {
@@ -27,8 +29,11 @@ public class AuthenticationController {
 
     @PostMapping("/sign-in")
     public ResponseEntity<SignInResDTO> authenticate(Authentication authentication) {
+        if (Objects.isNull(authentication)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
         String token = jwtTokenUntil.createToken(CustomUser.builder().username(authentication.getName()).build());
-        return new ResponseEntity<>(SignInResDTO.builder().token(token).build(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(SignInResDTO.builder().token(token).build(), HttpStatus.OK);
     }
 
     @PostMapping("/sign-up")
