@@ -43,6 +43,9 @@ public class CustomUser implements UserDetails {
     @ManyToOne
     @JoinColumn(name = "user_role_id")
     private Role role;
+    @ManyToOne
+    @JoinColumn(name = "user_project_id")
+    private Project projectOfUsers;
     @Override
     public Collection<CustomGrantedAuthority> getAuthorities() {
         return List.of();

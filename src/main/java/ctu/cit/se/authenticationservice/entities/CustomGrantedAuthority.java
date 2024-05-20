@@ -19,10 +19,13 @@ public class CustomGrantedAuthority implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @Column(name = "authority_name", unique = true, nullable = false, columnDefinition = "varchar(250)")
+    @Column(name = "authority_name", nullable = false, columnDefinition = "varchar(250)")
     private String authority;
     @ManyToMany(mappedBy = "authorities")
     @ToString.Exclude
     @JsonIgnore
     private Set<Role> roles = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "authority_project_id")
+    private Project projectOfAuthorities;
 }
