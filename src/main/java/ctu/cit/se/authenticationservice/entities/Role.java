@@ -18,10 +18,13 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @Column(name = "role_name", unique = true, nullable = false, columnDefinition = "varchar(250)")
+    @Column(name = "role_name", nullable = false, columnDefinition = "varchar(250)")
     private String name;
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private Set<CustomUser> users = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "role_project_id")
+    private Project projectOfRoles;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @ToString.Exclude
     @JsonIgnore

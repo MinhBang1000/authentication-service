@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-record Todo(String username, String description) {}
-
 @RestController
 @RequestMapping("/todo")
 public class TodoController {

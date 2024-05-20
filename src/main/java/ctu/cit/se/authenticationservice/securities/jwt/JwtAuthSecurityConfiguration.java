@@ -15,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -22,9 +24,11 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class JwtAuthSecurityConfiguration {
     @Autowired
     private UserDetailsManager userDetailsManager;
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http, PasswordEncoder passwordEncoder) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers("/authenticate/**").permitAll();
             auth.anyRequest().authenticated();
@@ -33,6 +37,10 @@ public class JwtAuthSecurityConfiguration {
         http.httpBasic(withDefaults());
         http.csrf(csrf -> csrf.disable());
         http.headers(headers -> headers.frameOptions(frameOptionsConfig-> frameOptionsConfig.disable()));
+        http.addFilterBefore(
+                jwtAuthenticationFilter,
+                UsernamePasswordAuthenticationFilter.class
+        );
         return http.build();
     }
 

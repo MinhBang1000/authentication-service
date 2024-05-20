@@ -1,9 +1,11 @@
 package ctu.cit.se.authenticationservice.controllers.imples;
 
 import ctu.cit.se.authenticationservice.daos.imples.CustomUserDetailsDAO;
-import ctu.cit.se.authenticationservice.dtos.users.SignUpDTO;
+import ctu.cit.se.authenticationservice.dtos.users.SignInResDTO;
+import ctu.cit.se.authenticationservice.dtos.users.SignUpReqDTO;
 import ctu.cit.se.authenticationservice.entities.CustomUser;
 import ctu.cit.se.authenticationservice.mappers.IBaseMapper;
+import ctu.cit.se.authenticationservice.securities.jwt.JwtTokenUntil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,22 +15,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Objects;
+
 @RestController
 @RequestMapping("/authenticate")
 public class AuthenticationController {
     @Autowired
     private CustomUserDetailsDAO userDetailsDAO;
     @Autowired
-    private IBaseMapper<SignUpDTO, CustomUser> createUserMapper;
+    private IBaseMapper<SignUpReqDTO, CustomUser> createUserMapper;
+    @Autowired
+    private JwtTokenUntil jwtTokenUntil;
 
-    @PostMapping
-    public Authentication authenticate(Authentication authentication) {
-        return authentication;
+    @PostMapping("/sign-in")
+    public ResponseEntity<SignInResDTO> authenticate(Authentication authentication) {
+        if (Objects.isNull(authentication)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        String token = jwtTokenUntil.createToken(CustomUser.builder().username(authentication.getName()).build());
+        return new ResponseEntity<>(SignInResDTO.builder().token(token).build(), HttpStatus.OK);
     }
 
     @PostMapping("/sign-up")
-    public ResponseEntity<String> signUp(@RequestBody SignUpDTO signUpDTO) {
-        userDetailsDAO.createUser(createUserMapper.convert(signUpDTO));
+    public ResponseEntity<String> signUp(@RequestBody SignUpReqDTO signUpReqDTO) {
+        userDetailsDAO.createUser(createUserMapper.convert(signUpReqDTO));
         return new ResponseEntity<>("Create user successfully !", HttpStatus.CREATED);
     }
 }

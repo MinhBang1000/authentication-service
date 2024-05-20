@@ -1,12 +1,10 @@
 package ctu.cit.se.authenticationservice.dtos.users;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 
@@ -14,7 +12,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignUpDTO {
+public class SignUpReqDTO {
     @JsonProperty("username")
     private String username;
     @JsonProperty("password")
