@@ -24,7 +24,7 @@ public class JwtAuthSecurityConfiguration {
     private UserDetailsManager userDetailsManager;
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http, PasswordEncoder passwordEncoder) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers("/authenticate/**").permitAll();
             auth.anyRequest().authenticated();
