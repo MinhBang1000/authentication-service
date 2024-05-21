@@ -2,9 +2,9 @@ package ctu.cit.se.authenticationservice.daos.imples;
 
 import ctu.cit.se.authenticationservice.entities.CustomUser;
 import ctu.cit.se.authenticationservice.exceptions.messages.CustomExceptionMessage;
-import ctu.cit.se.authenticationservice.repositories.CustomGrantedAuthorityRepository;
-import ctu.cit.se.authenticationservice.repositories.CustomUserRepository;
-import ctu.cit.se.authenticationservice.repositories.RoleRepository;
+import ctu.cit.se.authenticationservice.repositories.ICustomGrantedAuthorityRepository;
+import ctu.cit.se.authenticationservice.repositories.ICustomUserRepository;
+import ctu.cit.se.authenticationservice.repositories.IRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,16 +14,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-
 @Service
 public class CustomUserDetailsDAO implements UserDetailsManager {
     @Autowired
-    private CustomUserRepository userRepository;
+    private ICustomUserRepository userRepository;
     @Autowired
-    private CustomGrantedAuthorityRepository grantedAuthorityRepository;
+    private ICustomGrantedAuthorityRepository grantedAuthorityRepository;
     @Autowired
-    private RoleRepository roleRepository;
+    private IRoleRepository IRoleRepository;
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override

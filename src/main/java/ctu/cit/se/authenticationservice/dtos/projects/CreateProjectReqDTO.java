@@ -1,4 +1,4 @@
-package ctu.cit.se.authenticationservice.dtos.users;
+package ctu.cit.se.authenticationservice.dtos.projects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -7,10 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class SignInResDTO {
-    @JsonProperty("accessToken")
-    private String token;
+@NoArgsConstructor
+@Builder
+public class CreateProjectReqDTO {
+    @JsonProperty("projectName")
+    private String name;
 }

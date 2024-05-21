@@ -1,6 +1,6 @@
-package ctu.cit.se.authenticationservice.mappers.imples.custom_users;
+package ctu.cit.se.authenticationservice.mappers.imples.authentications;
 
-import ctu.cit.se.authenticationservice.dtos.users.SignUpReqDTO;
+import ctu.cit.se.authenticationservice.dtos.authentications.SignUpReqDTO;
 import ctu.cit.se.authenticationservice.entities.CustomUser;
 import ctu.cit.se.authenticationservice.mappers.IBaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CreateCustomUserMapper implements IBaseMapper<SignUpReqDTO, CustomUser> {
+public class SignUpMapper implements IBaseMapper<SignUpReqDTO, CustomUser> {
     @Autowired
     private PasswordEncoder passwordEncoder;
 

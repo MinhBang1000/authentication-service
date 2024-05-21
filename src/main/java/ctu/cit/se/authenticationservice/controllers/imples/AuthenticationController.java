@@ -1,8 +1,8 @@
 package ctu.cit.se.authenticationservice.controllers.imples;
 
 import ctu.cit.se.authenticationservice.daos.imples.CustomUserDetailsDAO;
-import ctu.cit.se.authenticationservice.dtos.users.SignInResDTO;
-import ctu.cit.se.authenticationservice.dtos.users.SignUpReqDTO;
+import ctu.cit.se.authenticationservice.dtos.authentications.SignInResDTO;
+import ctu.cit.se.authenticationservice.dtos.authentications.SignUpReqDTO;
 import ctu.cit.se.authenticationservice.entities.CustomUser;
 import ctu.cit.se.authenticationservice.mappers.IBaseMapper;
 import ctu.cit.se.authenticationservice.securities.jwt.JwtTokenUntil;

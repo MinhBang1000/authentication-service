@@ -1,4 +1,4 @@
-package ctu.cit.se.authenticationservice.dtos.roles;
+package ctu.cit.se.authenticationservice.dtos.authentications;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateRoleReqDTO {
-    @JsonProperty("roleName")
-    private String name;
-    @JsonProperty("roleProjectId")
-    private String projectId;
+public class SignInResDTO {
+    @JsonProperty("accessToken")
+    private String token;
 }

@@ -1,7 +1,7 @@
 package ctu.cit.se.authenticationservice.repository_tests.custom_users;
 
 import ctu.cit.se.authenticationservice.entities.CustomUser;
-import ctu.cit.se.authenticationservice.repositories.CustomUserRepository;
+import ctu.cit.se.authenticationservice.repositories.ICustomUserRepository;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -16,16 +16,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class CustomUserRepositoryTests {
+public class ICustomUserRepositoryTests {
     @Autowired
-    private CustomUserRepository customUserRepository;
+    private ICustomUserRepository ICustomUserRepository;
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
 
     @Test
     public void shouldGet_oneUser_withThisUsername() {
-        CustomUser customUser = customUserRepository.findByUsername("admin").orElse(null);
+        CustomUser customUser = ICustomUserRepository.findByUsername("admin").orElse(null);
         logger.info(customUser.toString());
         assertNotNull(customUser);
     }

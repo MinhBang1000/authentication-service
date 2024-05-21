@@ -1,4 +1,4 @@
-package ctu.cit.se.authenticationservice.dtos.authorities;
+package ctu.cit.se.authenticationservice.dtos.projects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -6,17 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RetrieveAuthorityResDTO {
-    @JsonProperty("authorityId")
+public class UpdateProjectReqDTO {
+    @JsonProperty("projectId")
     private String id;
-    @JsonProperty("authorityName")
+    @JsonProperty("projectName")
     private String name;
-    @JsonProperty("authorityProjectId")
-    private String projectId;
 }

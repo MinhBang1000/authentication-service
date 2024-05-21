@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UpdateRoleReqDTO {
     @JsonProperty("roleId")
-    private UUID id;
+    private String id;
     @JsonProperty("roleName")
     private String name;
 }

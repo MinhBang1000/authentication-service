@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface CustomGrantedAuthorityRepository extends JpaRepository<CustomGrantedAuthority, UUID> {
+public interface ICustomGrantedAuthorityRepository extends JpaRepository<CustomGrantedAuthority, UUID> {
 }

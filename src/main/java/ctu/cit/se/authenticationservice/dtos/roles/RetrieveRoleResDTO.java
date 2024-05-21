@@ -14,7 +14,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class RetrieveRoleResDTO {
     @JsonProperty("roleId")
-    private UUID id;
+    private String id;
     @JsonProperty("roleName")
     private String name;
+    @JsonProperty("roleProjectId")
+    private String projectId;
 }

@@ -1,4 +1,4 @@
-package ctu.cit.se.authenticationservice.dtos.users;
+package ctu.cit.se.authenticationservice.dtos.authentications;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
