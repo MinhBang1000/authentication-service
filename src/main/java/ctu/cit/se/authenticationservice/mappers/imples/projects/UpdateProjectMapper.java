@@ -26,4 +26,9 @@ public class UpdateProjectMapper implements IBaseMapper<UpdateProjectReqDTO, Pro
                 .name(Objects.nonNull(source.getName()) ? source.getName() : foundProject.getName())
                 .build();
     }
+
+    @Override
+    public boolean validate(UpdateProjectReqDTO source) {
+        return true;
+    }
 }

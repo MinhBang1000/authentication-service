@@ -25,4 +25,9 @@ public class CreateAuthorityMapper implements IBaseMapper<CreateAuthorityReqDTO,
                 .projectOfAuthorities(foundProject)
                 .build();
     }
+
+    @Override
+    public boolean validate(CreateAuthorityReqDTO source) {
+        return true;
+    }
 }

@@ -27,4 +27,9 @@ public class UpdateAuthorityMapper implements IBaseMapper<UpdateAuthorityReqDTO,
                 .projectOfAuthorities(authority.getProjectOfAuthorities())
                 .build();
     }
+
+    @Override
+    public boolean validate(UpdateAuthorityReqDTO source) {
+        return true;
+    }
 }

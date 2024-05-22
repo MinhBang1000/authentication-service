@@ -16,4 +16,9 @@ public class RetrieveProjectMapper implements IBaseMapper<Project, RetrieveProje
                 .name(source.getName())
                 .build();
     }
+
+    @Override
+    public boolean validate(Project source) {
+        return true;
+    }
 }

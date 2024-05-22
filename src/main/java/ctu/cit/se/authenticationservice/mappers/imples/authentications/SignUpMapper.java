@@ -26,4 +26,9 @@ public class SignUpMapper implements IBaseMapper<SignUpReqDTO, CustomUser> {
                 .enabled(true)
                 .build();
     }
+
+    @Override
+    public boolean validate(SignUpReqDTO source) {
+        return true;
+    }
 }

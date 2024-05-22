@@ -20,4 +20,9 @@ public class RetrieveRoleMapper implements IBaseMapper<Role, RetrieveRoleResDTO>
                 .projectId(source.getProjectOfRoles().getId().toString())
                 .build();
     }
+
+    @Override
+    public boolean validate(Role source) {
+        return true;
+    }
 }

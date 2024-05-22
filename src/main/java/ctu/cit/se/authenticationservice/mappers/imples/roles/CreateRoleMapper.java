@@ -25,4 +25,9 @@ public class CreateRoleMapper implements IBaseMapper<CreateRoleReqDTO, Role> {
                 .projectOfRoles(foundProject)
                 .build();
     }
+
+    @Override
+    public boolean validate(CreateRoleReqDTO source) {
+        return true;
+    }
 }

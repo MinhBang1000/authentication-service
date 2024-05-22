@@ -23,11 +23,6 @@ public class CreateUserMapper implements IBaseMapper<CreateUserReqDTO, CustomUse
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private boolean validate(CreateUserReqDTO source) {
-        /* Validate DTO here */
-        return true;
-    }
-
     @Override
     public CustomUser convert(CreateUserReqDTO source) {
         Project foundProject = IProjectRepository.findById(UUID.fromString(source.getProjectId())).orElseThrow(
@@ -49,5 +44,10 @@ public class CreateUserMapper implements IBaseMapper<CreateUserReqDTO, CustomUse
                 .projectOfUsers(foundProject)
                 .role(foundRole)
                 .build();
+    }
+
+    @Override
+    public boolean validate(CreateUserReqDTO source) {
+        return true;
     }
 }

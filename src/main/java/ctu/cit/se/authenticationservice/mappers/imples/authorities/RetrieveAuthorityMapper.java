@@ -15,4 +15,9 @@ public class RetrieveAuthorityMapper implements IBaseMapper<CustomGrantedAuthori
                 .projectId(source.getProjectOfAuthorities().getId().toString())
                 .build();
     }
+
+    @Override
+    public boolean validate(CustomGrantedAuthority source) {
+        return true;
+    }
 }

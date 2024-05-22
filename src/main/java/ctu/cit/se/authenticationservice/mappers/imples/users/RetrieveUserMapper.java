@@ -32,4 +32,9 @@ public class RetrieveUserMapper implements IBaseMapper<CustomUser, RetrieveUserR
                 .projectId(foundUser.getProjectOfUsers().getId().toString())
                 .build();
     }
+
+    @Override
+    public boolean validate(CustomUser source) {
+        return true;
+    }
 }

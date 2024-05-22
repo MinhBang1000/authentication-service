@@ -27,4 +27,9 @@ public class UpdateRoleMapper implements IBaseMapper<UpdateRoleReqDTO, Role> {
                 .projectOfRoles(role.getProjectOfRoles())
                 .build();
     }
+
+    @Override
+    public boolean validate(UpdateRoleReqDTO source) {
+        return true;
+    }
 }

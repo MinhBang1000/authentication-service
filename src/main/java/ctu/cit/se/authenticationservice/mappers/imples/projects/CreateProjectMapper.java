@@ -13,4 +13,9 @@ public class CreateProjectMapper implements IBaseMapper<CreateProjectReqDTO, Pro
                 .name(source.getName())
                 .build();
     }
+
+    @Override
+    public boolean validate(CreateProjectReqDTO source) {
+        return true;
+    }
 }

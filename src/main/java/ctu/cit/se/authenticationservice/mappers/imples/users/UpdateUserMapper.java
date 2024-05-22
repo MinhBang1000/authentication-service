@@ -43,4 +43,9 @@ public class UpdateUserMapper implements IBaseMapper<UpdateUserReqDTO, CustomUse
                 .projectOfUsers(user.getProjectOfUsers())
                 .build();
     }
+
+    @Override
+    public boolean validate(UpdateUserReqDTO source) {
+        return true;
+    }
 }
