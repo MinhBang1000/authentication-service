@@ -65,4 +65,11 @@ public class ProjectDAO implements IProjectDAO {
         );
         projectRepository.delete(foundProject);
     }
+
+    @Override
+    public void createInitData(List<Project> projects) {
+        for (Project project : projects) {
+            projectRepository.save(project);
+        }
+    }
 }
