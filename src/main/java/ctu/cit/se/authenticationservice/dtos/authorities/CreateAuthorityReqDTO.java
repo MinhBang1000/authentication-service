@@ -15,4 +15,6 @@ public class CreateAuthorityReqDTO {
     private String name;
     @JsonProperty("authorityProjectId")
     private String projectId;
+    @JsonProperty("authorityDescription")
+    private String description;
 }

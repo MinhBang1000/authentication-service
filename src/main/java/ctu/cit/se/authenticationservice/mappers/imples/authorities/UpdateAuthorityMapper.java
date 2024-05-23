@@ -24,6 +24,7 @@ public class UpdateAuthorityMapper implements IBaseMapper<UpdateAuthorityReqDTO,
         return CustomGrantedAuthority.builder()
                 .id(UUID.fromString(source.getId()))
                 .authority(Objects.nonNull(source.getName()) ? source.getName() : authority.getAuthority())
+                .description(Objects.nonNull(source.getDescription()) ? source.getDescription() : authority.getDescription())
                 .projectOfAuthorities(authority.getProjectOfAuthorities())
                 .build();
     }

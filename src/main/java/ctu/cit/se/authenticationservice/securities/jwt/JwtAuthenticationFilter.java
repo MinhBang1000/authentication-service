@@ -50,9 +50,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         /* Set the security context holder in order to transfer to DaoAuthenticationProvider the Authentication Object with principal (User Details) and credentials (Password) */
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        /* Check the authentication string */
-        logger.info("Authenticated user: " + authentication.toString());
-
         /* Do next the filters */
         filterChain.doFilter(request, response);
     }

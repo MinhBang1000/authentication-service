@@ -12,6 +12,7 @@ public class RetrieveAuthorityMapper implements IBaseMapper<CustomGrantedAuthori
         return RetrieveAuthorityResDTO.builder()
                 .id(source.getId().toString())
                 .name(source.getAuthority())
+                .description(source.getDescription())
                 .projectId(source.getProjectOfAuthorities().getId().toString())
                 .build();
     }

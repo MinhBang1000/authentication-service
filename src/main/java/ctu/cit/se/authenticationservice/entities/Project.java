@@ -1,10 +1,7 @@
 package ctu.cit.se.authenticationservice.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.*;
 
@@ -23,11 +20,14 @@ public class Project {
     private String name;
 
     @OneToMany(mappedBy = "projectOfUsers")
+    @ToString.Exclude
     private List<CustomUser> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "projectOfRoles")
+    @ToString.Exclude
     private List<Role> roles = new ArrayList<>();
 
     @OneToMany(mappedBy = "projectOfAuthorities")
+    @ToString.Exclude
     private List<CustomGrantedAuthority> authorities = new ArrayList<>();
 }

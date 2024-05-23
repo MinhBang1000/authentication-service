@@ -17,6 +17,8 @@ public class RetrieveAuthorityResDTO {
     private String id;
     @JsonProperty("authorityName")
     private String name;
+    @JsonProperty("authorityDescription")
+    private String description;
     @JsonProperty("authorityProjectId")
     private String projectId;
 }

@@ -22,6 +22,7 @@ public class CreateAuthorityMapper implements IBaseMapper<CreateAuthorityReqDTO,
                 () -> new IllegalArgumentException(CustomExceptionMessage.PROJECT_NOT_FOUND));
         return CustomGrantedAuthority.builder()
                 .authority(source.getName())
+                .description(source.getDescription())
                 .projectOfAuthorities(foundProject)
                 .build();
     }

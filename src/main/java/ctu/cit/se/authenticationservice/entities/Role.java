@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -33,4 +34,30 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name = "authority_id")
     )
     private Set<CustomGrantedAuthority> authorities = new HashSet<>();
+
+    public void addAuthority(CustomGrantedAuthority authority) {
+        if (Objects.isNull(authorities)) {
+            authorities = new HashSet<>();
+        }
+        authorities.add(authority);
+    }
+
+    public void removeAuthority(CustomGrantedAuthority authority) {
+        if (Objects.nonNull(authorities)) {
+            authorities.removeIf(existedAuthority -> existedAuthority.getId().equals(authority.getId()));
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role = (Role) o;
+        return Objects.equals(id, role.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
