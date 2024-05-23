@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -14,7 +16,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UpdateRoleReqDTO {
     @JsonProperty("roleId")
-    private UUID id;
+    private String id;
+    @JsonProperty("roleAuthorities")
+    private Set<String> authorities = new HashSet<>();
     @JsonProperty("roleName")
     private String name;
 }

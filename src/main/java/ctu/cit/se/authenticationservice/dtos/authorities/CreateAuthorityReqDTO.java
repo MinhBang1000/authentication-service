@@ -13,4 +13,8 @@ import lombok.NoArgsConstructor;
 public class CreateAuthorityReqDTO {
     @JsonProperty("authorityName")
     private String name;
+    @JsonProperty("authorityProjectId")
+    private String projectId;
+    @JsonProperty("authorityDescription")
+    private String description;
 }

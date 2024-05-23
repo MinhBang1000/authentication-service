@@ -5,12 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.Hibernate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -46,9 +47,14 @@ public class CustomUser implements UserDetails {
     @ManyToOne
     @JoinColumn(name = "user_project_id")
     private Project projectOfUsers;
+
     @Override
     public Collection<CustomGrantedAuthority> getAuthorities() {
-        return List.of();
+        List<CustomGrantedAuthority> authorities = new ArrayList<>();
+        if (Objects.nonNull(role)) {
+            authorities = Objects.nonNull(role.getAuthorities()) ? new ArrayList<>(role.getAuthorities()) : List.of();
+        }
+        return authorities;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package ctu.cit.se.authenticationservice.securities.jwt;
 
-import ctu.cit.se.authenticationservice.repositories.CustomUserRepository;
+import ctu.cit.se.authenticationservice.repositories.ICustomUserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUntil jwtTokenUntil;
     @Autowired
-    private CustomUserRepository userRepository;
+    private ICustomUserRepository userRepository;
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
@@ -49,9 +49,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         /* Set the security context holder in order to transfer to DaoAuthenticationProvider the Authentication Object with principal (User Details) and credentials (Password) */
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        /* Check the authentication string */
-        logger.info("Authenticated user: " + authentication.toString());
 
         /* Do next the filters */
         filterChain.doFilter(request, response);

@@ -14,7 +14,9 @@ import java.util.UUID;
 @Builder
 public class UpdateAuthorityReqDTO {
     @JsonProperty("authorityId")
-    private UUID id;
+    private String id;
     @JsonProperty("authorityName")
     private String name;
+    @JsonProperty("authorityDescription")
+    private String description;
 }

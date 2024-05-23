@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -21,6 +22,8 @@ public class CustomGrantedAuthority implements GrantedAuthority {
     private UUID id;
     @Column(name = "authority_name", nullable = false, columnDefinition = "varchar(250)")
     private String authority;
+    @Column(name = "authority_description", columnDefinition = "varchar(250)")
+    private String description;
     @ManyToMany(mappedBy = "authorities")
     @ToString.Exclude
     @JsonIgnore
@@ -28,4 +31,30 @@ public class CustomGrantedAuthority implements GrantedAuthority {
     @ManyToOne
     @JoinColumn(name = "authority_project_id")
     private Project projectOfAuthorities;
+
+    public void addRole(Role role) {
+        if (Objects.isNull(roles)) {
+            roles = new HashSet<>();
+        }
+        roles.add(role);
+    }
+
+    public void removeRole(Role role) {
+        if (Objects.nonNull(roles)) {
+            roles.removeIf(existedRole -> role.getId().equals(existedRole.getId()));
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomGrantedAuthority authority = (CustomGrantedAuthority) o;
+        return Objects.equals(id, authority.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
