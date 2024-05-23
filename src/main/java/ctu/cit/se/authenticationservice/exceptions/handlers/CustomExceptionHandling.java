@@ -17,6 +17,6 @@ public class CustomExceptionHandling{
     @ExceptionHandler(value = {Exception.class})
     protected ResponseEntity<ErrorDetails> handleAllException(Exception ex, WebRequest request) throws Exception {
         ex.printStackTrace();
-        return new ResponseEntity<>(ErrorDetails.builder().detail(request.getDescription(false)).createAt(LocalDateTime.now()).message(ex.getMessage()).build(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(ErrorDetails.builder().detail(request.getDescription(false)).createAt(LocalDateTime.now().toString()).message(ex.getMessage()).build(), HttpStatus.BAD_REQUEST);
     }
 }

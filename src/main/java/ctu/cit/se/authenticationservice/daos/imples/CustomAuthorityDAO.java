@@ -10,6 +10,7 @@ import ctu.cit.se.authenticationservice.dtos.roles.CreateRoleReqDTO;
 import ctu.cit.se.authenticationservice.dtos.roles.RetrieveRoleResDTO;
 import ctu.cit.se.authenticationservice.dtos.roles.UpdateRoleReqDTO;
 import ctu.cit.se.authenticationservice.entities.CustomGrantedAuthority;
+import ctu.cit.se.authenticationservice.entities.Project;
 import ctu.cit.se.authenticationservice.entities.Role;
 import ctu.cit.se.authenticationservice.exceptions.messages.CustomExceptionMessage;
 import ctu.cit.se.authenticationservice.mappers.IBaseMapper;
@@ -64,5 +65,12 @@ public class CustomAuthorityDAO implements ICustomAuthorityDAO {
                 () -> new IllegalArgumentException(CustomExceptionMessage.PROJECT_NOT_FOUND)
         );
         authorityRepository.delete(authority);
+    }
+
+    @Override
+    public void createInitData(List<CustomGrantedAuthority> authorities) {
+        for (CustomGrantedAuthority authority : authorities) {
+            authorityRepository.save(authority);
+        }
     }
 }

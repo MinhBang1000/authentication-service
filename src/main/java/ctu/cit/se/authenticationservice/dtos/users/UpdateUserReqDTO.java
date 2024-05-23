@@ -15,8 +15,6 @@ import java.time.LocalDate;
 public class UpdateUserReqDTO {
     @JsonProperty("userId")
     private String id;
-    @JsonProperty("username")
-    private String username;
     @JsonProperty("firstname")
     private String firstname;
     @JsonProperty("lastname")

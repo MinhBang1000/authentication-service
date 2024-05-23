@@ -1,5 +1,6 @@
 package ctu.cit.se.authenticationservice.controllers.imples;
 
+import ctu.cit.se.authenticationservice.daos.ifaces.ICustomAuthorityDAO;
 import ctu.cit.se.authenticationservice.daos.ifaces.IProjectDAO;
 import ctu.cit.se.authenticationservice.daos.ifaces.IRoleDAO;
 import ctu.cit.se.authenticationservice.dtos.projects.RetrieveProjectResDTO;
@@ -7,6 +8,7 @@ import ctu.cit.se.authenticationservice.dtos.roles.RetrieveRoleResDTO;
 import ctu.cit.se.authenticationservice.entities.CustomUser;
 import ctu.cit.se.authenticationservice.entities.Project;
 import ctu.cit.se.authenticationservice.entities.Role;
+import ctu.cit.se.authenticationservice.migrations.ifaces.IAuthorityInitData;
 import ctu.cit.se.authenticationservice.migrations.ifaces.IProjectInitData;
 import ctu.cit.se.authenticationservice.migrations.ifaces.IRoleInitData;
 import ctu.cit.se.authenticationservice.migrations.imples.ProjectInitData;
@@ -34,7 +36,11 @@ public class InitController {
     @Autowired
     private IProjectDAO projectDAO;
     @Autowired
+    private ICustomAuthorityDAO authorityDAO;
+    @Autowired
     private IRoleInitData roleInitData;
+    @Autowired
+    private IAuthorityInitData authorityInitData;
     @Autowired
     private ICustomUserRepository userRepository;
     @Autowired
@@ -49,8 +55,9 @@ public class InitController {
 
     @PostMapping("/common-data")
     public ResponseEntity<String> initData() {
-        roleDAO.createInitData(roleInitData.getInitData());
         projectDAO.createInitData(projectInitData.getInitData());
+        roleDAO.createInitData(roleInitData.getInitData());
+        authorityDAO.createInitData(authorityInitData.getInitData());
         return new ResponseEntity<>("Init data successfully !", HttpStatus.CREATED);
     }
 

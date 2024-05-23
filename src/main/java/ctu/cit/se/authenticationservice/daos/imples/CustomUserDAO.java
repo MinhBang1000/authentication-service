@@ -1,10 +1,12 @@
 package ctu.cit.se.authenticationservice.daos.imples;
 
 import ctu.cit.se.authenticationservice.daos.ifaces.ICustomUserDAO;
+import ctu.cit.se.authenticationservice.dtos.authorities.RetrieveAuthorityResDTO;
 import ctu.cit.se.authenticationservice.dtos.others.CommandDTO;
 import ctu.cit.se.authenticationservice.dtos.users.CreateUserReqDTO;
 import ctu.cit.se.authenticationservice.dtos.users.RetrieveUserResDTO;
 import ctu.cit.se.authenticationservice.dtos.users.UpdateUserReqDTO;
+import ctu.cit.se.authenticationservice.entities.CustomGrantedAuthority;
 import ctu.cit.se.authenticationservice.entities.CustomUser;
 import ctu.cit.se.authenticationservice.exceptions.messages.CustomExceptionMessage;
 import ctu.cit.se.authenticationservice.mappers.IBaseMapper;
@@ -26,6 +28,8 @@ public class CustomUserDAO implements ICustomUserDAO {
     private IBaseMapper<UpdateUserReqDTO, CustomUser> updateMapper;
     @Autowired
     private IBaseMapper<CustomUser, RetrieveUserResDTO> retrieveMapper;
+    @Autowired
+    private IBaseMapper<CustomGrantedAuthority, RetrieveAuthorityResDTO> retrieveAuthorityMapper;
 
     @Override
     public List<RetrieveUserResDTO> list() {
@@ -49,7 +53,11 @@ public class CustomUserDAO implements ICustomUserDAO {
         CustomUser retrieveUser = userRepository.findById(uuid).orElseThrow(
                 () -> new IllegalArgumentException(CustomExceptionMessage.USER_NOT_FOUND)
         );
-        return retrieveMapper.convert(retrieveUser);
+        RetrieveUserResDTO userResDTO = retrieveMapper.convert(retrieveUser);
+        userResDTO.getRole().setAuthorities(retrieveUser.getRole().getAuthorities().stream().map(
+                authority -> retrieveAuthorityMapper.convert(authority)
+        ).toList());
+        return userResDTO;
     }
 
     @Override

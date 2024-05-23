@@ -1,12 +1,16 @@
 package ctu.cit.se.authenticationservice.dtos.users;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import ctu.cit.se.authenticationservice.dtos.authorities.RetrieveAuthorityResDTO;
+import ctu.cit.se.authenticationservice.dtos.projects.RetrieveProjectResDTO;
+import ctu.cit.se.authenticationservice.dtos.roles.RetrieveRoleResDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -22,9 +26,9 @@ public class RetrieveUserResDTO {
     @JsonProperty("lastname")
     private String lastname;
     @JsonProperty("birthday")
-    private LocalDate birthday;
-    @JsonProperty("roleId")
-    private String roleId;
-    @JsonProperty("projectId")
-    private String projectId;
+    private String birthday;
+    @JsonProperty("role")
+    private RetrieveRoleResDTO role;
+    @JsonProperty("project")
+    private RetrieveProjectResDTO project;
 }

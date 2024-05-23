@@ -26,7 +26,7 @@ public class Role {
     @ManyToOne
     @JoinColumn(name = "role_project_id")
     private Project projectOfRoles;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @ToString.Exclude
     @JsonIgnore
     @JoinTable(name = "role_authorities",
@@ -46,6 +46,14 @@ public class Role {
         if (Objects.nonNull(authorities)) {
             authorities.removeIf(existedAuthority -> existedAuthority.getId().equals(authority.getId()));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     @Override

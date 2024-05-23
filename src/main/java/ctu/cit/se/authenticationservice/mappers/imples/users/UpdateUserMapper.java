@@ -32,16 +32,11 @@ public class UpdateUserMapper implements IBaseMapper<UpdateUserReqDTO, CustomUse
                 () -> new IllegalArgumentException(CustomExceptionMessage.ROLE_NOT_FOUND)
         );
         /* Still working */
-        return CustomUser.builder()
-                .id(user.getId())
-                .username(user.getUsername())
-                .firstname(Objects.nonNull(source.getFirstname()) ? source.getFirstname() : user.getFirstname())
-                .lastname(Objects.nonNull(source.getLastname()) ? source.getLastname() : user.getLastname())
-                .birthday(Objects.nonNull(source.getBirthday()) ? source.getBirthday() : user.getBirthday())
-                .password(user.getPassword())
-                .role(role)
-                .projectOfUsers(user.getProjectOfUsers())
-                .build();
+        user.setRole(role);
+        user.setBirthday(Objects.nonNull(source.getBirthday()) ? source.getBirthday() : user.getBirthday());
+        user.setFirstname(Objects.nonNull(source.getFirstname()) ? source.getFirstname() : user.getFirstname());
+        user.setLastname(Objects.nonNull(source.getLastname()) ? source.getLastname() : user.getLastname());
+        return user;
     }
 
     @Override
