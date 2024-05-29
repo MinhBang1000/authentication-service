@@ -9,4 +9,6 @@ public class CustomExceptionMessage {
     public static String AUTHORITY_NOT_FOUND = "Authority Not Found";
     public static String PROJECT_NOT_FOUND = "Project Not Found";
     public static String PASSWORD_CONFIRM_NOT_MATCH = "Password Confirm Not Match";
+    public static String TOKEN_EXPIRED = "Token Expired";
+    public static String IS_NOT_REFRESH_TOKEN = "Is Not Refresh Token";
 }
