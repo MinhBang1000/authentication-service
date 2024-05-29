@@ -33,9 +33,9 @@ public class AuthenticationController {
         return new ResponseEntity<>(SignInResDTO.builder().token(token).build(), HttpStatus.OK);
     }
 
-    @PostMapping("/sign-up")
-    public ResponseEntity<String> signUp(@RequestBody SignUpReqDTO signUpReqDTO) {
-        userDetailsDAO.createUser(createUserMapper.convert(signUpReqDTO));
-        return new ResponseEntity<>("Create user successfully !", HttpStatus.CREATED);
-    }
+//    @PostMapping("/sign-up")
+//    public ResponseEntity<String> signUp(@RequestBody SignUpReqDTO signUpReqDTO) {
+//        userDetailsDAO.createUser(createUserMapper.convert(signUpReqDTO));
+//        return new ResponseEntity<>("Create user successfully !", HttpStatus.CREATED);
+//    }
 }

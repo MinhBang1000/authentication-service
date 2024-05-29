@@ -42,6 +42,10 @@ public class CreateUserMapper implements IBaseMapper<CreateUserReqDTO, CustomUse
                 .lastname(source.getLastname())
                 .birthday(source.getBirthday())
                 .projectOfUsers(foundProject)
+                .accountNonLocked(true)
+                .enabled(true)
+                .credentialsNonExpired(true)
+                .accountNonExpired(true)
                 .role(foundRole)
                 .build();
     }
