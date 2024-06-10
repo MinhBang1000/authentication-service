@@ -39,7 +39,7 @@ public class JwtTokenUntil {
                 .setExpiration(tokenValidity)
                 .setIssuer(userDetails.getUsername());
         if (isRefresh) {
-            Date refreshTokenValidity = Date.from(Instant.now().plusSeconds(accessTokenValidityInSeconds));
+            Date refreshTokenValidity = Date.from(Instant.now().plusSeconds(accessTokenValidityInSecondsForRefresh));
             claims.setExpiration(refreshTokenValidity);
             claims.put("isRefresh", true);
         }else {
@@ -59,7 +59,7 @@ public class JwtTokenUntil {
         String bearerToken = request.getHeader(TOKEN_HEADER);
         if (Objects.nonNull(bearerToken) && bearerToken.startsWith(TOKEN_PREFIX)) {
             String token = bearerToken.substring(TOKEN_PREFIX.length());
-            if (!validateClaims(parseJwtClaims(token)))  {
+            if (!validateClaims(parseJwtClaims(token))) {
                 throw new IllegalArgumentException(CustomExceptionMessage.TOKEN_EXPIRED);
             }
             return token;
