@@ -35,6 +35,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
+        /* A refresh token can not be used to do anything out of refreshing access token */
+        boolean isRefresh = jwtTokenUntil.getIsRefreshedFromToken(receivedToken);
+        if (isRefresh) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         /* Get user details entity from database */
         UserDetails loggedUser = userRepository.findByUsername(jwtTokenUntil.getUsernameFromToken(receivedToken)).orElse(null);
 
